@@ -23,6 +23,8 @@ describe('Form', () => {
 });
 
 describe('List', () => {
+  beforeEach(() => cy.visit('http://localhost:4200'));
+  
   it('should be able to mark todo items', () => {
     cy.get('label').first()
       .should(($input) => {
