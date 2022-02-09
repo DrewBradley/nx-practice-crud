@@ -5,18 +5,10 @@ interface Props {
   }
   
   export const Form: React.FC<Props> = ({ addTodo }) => {
-    const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     
     return (
       <form>
-        <input
-          type="text"
-          value={title}
-          onChange={e => {
-            setTitle(e.target.value);
-          }}
-        />
         <input
           type="text"
           value={text}
@@ -28,7 +20,7 @@ interface Props {
           type="submit"
           onClick={e => {
             e.preventDefault();
-            addTodo(title, text);
+            addTodo(text);
             setText('');
           }}
         >

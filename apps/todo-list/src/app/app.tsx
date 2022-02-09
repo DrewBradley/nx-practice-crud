@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { List } from './List/List';
 import { Todo } from './List/Todo'
 import { Form } from './Form/Form'
-import './App.css';
+
 
 const initialTodos: Todo[] = [
   {
@@ -32,8 +32,8 @@ function App() {
     setList(newTodos);
   };
 
-  const addTodo: AddTodo = (title: string, text: string) => {
-    const newTodo = { title, text, complete: false };
+  const addTodo: AddTodo = (text: string) => {
+    const newTodo = { text, complete: false };
     setList([...list, newTodo]);
   };
 

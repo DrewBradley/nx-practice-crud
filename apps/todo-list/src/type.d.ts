@@ -5,4 +5,4 @@ complete: boolean;
 
 type completeToDo = (selectedTodo: Todo) => void;
 
-type AddTodo = (title: string, text: string) => void;
+type AddTodo = (text: string) => void;
