@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { List } from './List/List';
 import { Todo } from './List/Todo'
 import { Form } from './Form/Form'
+import { Quote } from './Quote/Quote';
 
 
 const initialTodos: Todo[] = [
@@ -18,6 +19,7 @@ const initialTodos: Todo[] = [
 
 function App() {
   const [list, setList] = useState(initialTodos);
+  const [quote, setQuote] = useState({text: "Finish your work!", author: "Drew"})
 
   const completeToDo = (selectedTodo: Todo) => {
     const newTodos = list.map(todo => {
@@ -32,9 +34,21 @@ function App() {
     setList(newTodos);
   };
 
+  const getQuote = () => {
+    fetch(`https://type.fit/api/quotes/`)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    setQuote(data[Math.floor(Math.random() * data.length)]);
+  });
+}
+
   const addTodo: AddTodo = (text: string) => {
+    getQuote();
     const newTodo = { text, complete: false };
     setList([...list, newTodo]);
+    console.log("quote", quote)
   };
 
 
@@ -42,6 +56,7 @@ function App() {
     <>
       <List todos={list} completeToDo={completeToDo} />
       <Form addTodo={addTodo} />
+      <Quote quote={quote} />
     </>
   );
 }

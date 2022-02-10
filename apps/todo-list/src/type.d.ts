@@ -6,3 +6,8 @@ complete: boolean;
 type completeToDo = (selectedTodo: Todo) => void;
 
 type AddTodo = (text: string) => void;
+
+interface Quote {
+text: string;
+author: string;
+}

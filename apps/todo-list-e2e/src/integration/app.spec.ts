@@ -24,7 +24,7 @@ describe('Form', () => {
 
 describe('List', () => {
   beforeEach(() => cy.visit('http://localhost:4200'));
-  
+
   it('should be able to mark todo items', () => {
     cy.get('label').first()
       .should(($input) => {
@@ -38,4 +38,24 @@ describe('List', () => {
       .should('have.css', 'text-decoration')
       .and('includes', 'line-through')
   });
+});
+
+describe('Quote', () => {
+  beforeEach(() => cy.visit('http://localhost:4200'));
+  
+  it('should display default quote', () => {
+    cy.get('p').first()
+      .should('have.text', '"Finish your work!"')
+  });
+
+  it('should display new quote when todo is added', () => {
+    cy.intercept('GET', 'https://type.fit/api/quotes/', { fixture: 'mock-call.json' })
+    cy.get('input[type="text"]')
+      .type('Read Grokking Simplicity')
+      .get('button').first().click()
+
+    cy.get('p').first()
+      .should('have.text', '"You can observe a lot just by watching."')
+  });
+
 });
