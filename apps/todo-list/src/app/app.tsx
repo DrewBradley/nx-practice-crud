@@ -19,7 +19,7 @@ const initialTodos: Todo[] = [
 
 function App() {
   const [list, setList] = useState(initialTodos);
-  const [quote, setQuote] = useState({text: "Finish your work!", author: "Drew"})
+  const [quote, setQuote] = useState({text: "Finish your work, Drew!", author: "Rich Vazquez (probably)"})
 
   const completeToDo = (selectedTodo: Todo) => {
     const newTodos = list.map(todo => {
@@ -36,19 +36,18 @@ function App() {
 
   const getQuote = () => {
     fetch(`https://type.fit/api/quotes/`)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(data) {
-    setQuote(data[Math.floor(Math.random() * data.length)]);
-  });
-}
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      setQuote(data[Math.floor(Math.random() * data.length)]);
+    });
+  }
 
   const addTodo: AddTodo = (text: string) => {
     getQuote();
     const newTodo = { text, complete: false };
     setList([...list, newTodo]);
-    console.log("quote", quote)
   };
 
 

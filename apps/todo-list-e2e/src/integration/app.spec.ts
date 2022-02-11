@@ -1,4 +1,3 @@
-
 describe('Form', () => {
   beforeEach(() => cy.visit('http://localhost:4200'));
 
@@ -45,7 +44,7 @@ describe('Quote', () => {
   
   it('should display default quote', () => {
     cy.get('p').first()
-      .should('have.text', '"Finish your work!"')
+      .should('have.text', '"Finish your work, Drew!"')
   });
 
   it('should display new quote when todo is added', () => {
